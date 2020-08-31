@@ -10,6 +10,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   date_created: {
     type: String,
@@ -20,5 +21,6 @@ const userSchema = new Schema({
     required: true,
   },
 });
+
 const User = mongoose.model("User", userSchema);
 module.exports = User;

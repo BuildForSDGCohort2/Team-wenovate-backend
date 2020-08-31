@@ -1,9 +1,13 @@
 const User = require("../controllers/User");
+const validateRegisterCredentials = require("../middlewares/validateRequestCredentials")
+  .validateRegisterCredentials;
+const validateLoginCredentials = require("../middlewares/validateRequestCredentials")
+  .validateLoginCredentials;
 
-const { signUp } = User;
+const { signUp, login } = User;
 
 const user = (app) => {
-  app.post("/api/user/signup", signUp);
-  // app.post("/api/user/login", "add a login static method to user class");
+  app.post("/api/user/signup", validateRegisterCredentials, signUp);
+  app.post("/api/user/login", validateLoginCredentials, login);
 };
 module.exports = user;
